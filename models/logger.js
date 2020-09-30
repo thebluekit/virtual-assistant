@@ -2,8 +2,8 @@ class Logger {
     errorColor = 'color: white; background-color: red'
     warningColor = 'color: white; background-color: orange'
 
-    constructor(devMode=false) {
-        this.devMode = devMode;
+    constructor(debugMode=false) {
+        this.debugMode = debugMode;
     }
 
     getCurrentTime() {
@@ -19,10 +19,11 @@ class Logger {
     }
 
     logError(err) {
-        if (this.devMode) {
+        if (this.debugMode) {
             this.showLog(this.errorColor, err);
         }
         else {
+            this.showLog(this.errorColor, err);
             throw err;
         }
     }
