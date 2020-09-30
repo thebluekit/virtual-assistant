@@ -1,10 +1,11 @@
-import {logger} from './logger.js'
-import {readJSON} from './jsonLoader.js'
+import {logger} from '../logger.js'
+import {readJSON} from '../dataBases/jsonLoader.js'
 
 export class Skill {
     constructor(skillPath) {
         this.skillPath = skillPath;
         this.loadSkill(skillPath);
+        logger.log(this.skillDescription);
     }
 
     loadSkill(skillPath) {
@@ -15,7 +16,7 @@ export class Skill {
             }
             else {
                 this.skillDescription = skillDescription;
-                logger.log("Skill " + skillPath + " was successful uploaded")
+                logger.log("Skill " + skillPath + " was successful loaded")
             }
         }
         catch (err) {
