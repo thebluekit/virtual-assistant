@@ -13,23 +13,28 @@ class Logger {
         return '[' + date + ' ' + time + ']';
     }
 
-    showLog(logColor, err) {
+    showError(err) {
+        let errorName = '%c' + ' ' + this.getCurrentTime() + ' ' + Object.getPrototypeOf(err.constructor).name + ' ';
+        console.log(errorName, this.errorColor, err.name + '\t' + err.message);
+    }
+
+    showWarning(message) {
         let errorName = '%c' + ' ' + this.getCurrentTime() + ' ' + Object.getPrototypeOf(err.constructor).name + ' ';
         console.log(errorName, logColor, err.name + '\t' + err.message);
     }
 
     logError(err) {
         if (this.debugMode) {
-            this.showLog(this.errorColor, err);
+            this.showError(this.errorColor, err);
         }
         else {
-            this.showLog(this.errorColor, err);
+            this.showError(this.errorColor, err);
             throw err;
         }
     }
 
     logWarning(warning) {
-        this.showLog(this.warningColor, warning);
+        this.showWarning(this.warningColor, warning);
     }
 }
 
