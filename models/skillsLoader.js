@@ -3,18 +3,23 @@ import {readJSON} from './jsonLoader.js'
 
 export class Skill {
     constructor(skillPath) {
+        this.skillPath = skillPath;
         this.loadSkill(skillPath);
     }
 
     loadSkill(skillPath) {
         try {
             let skillDescription = readJSON(skillPath);
-            this.checkSkillStructure(skillDescription);
-            
-
+            if (!this.checkSkillStructure(skillDescription)) {
+                logger.err(new SkillStructureError("Bad skill structure"))
+            }
+            else {
+                this.skillDescription = skillDescription;
+                logger.log("Skill " + skillPath + " was successful uploaded")
+            }
         }
         catch (err) {
-            logger.logError(new SkillUploadError(err.message));
+            logger.err(new SkillUploadError(err.message));
         }
     }
 
@@ -35,7 +40,7 @@ export class Skill {
         }
 
         if (optionalOptions.length != optionsCounter(optionalOptions)) {
-            logger.logWarning(new SkillStructureError(err.message));
+            logger.warn("Action, entity, or context is not defined at skill " + this.skillPath);
         }
 
         return true;

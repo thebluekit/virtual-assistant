@@ -1,40 +1,35 @@
 class Logger {
     errorColor = 'color: white; background-color: red'
     warningColor = 'color: white; background-color: orange'
+    logColor = ''
 
     constructor(debugMode=false) {
         this.debugMode = debugMode;
+        if (debugMode) {
+            this.log("Logger started at debug mode")
+        }
     }
 
     getCurrentTime() {
         let today = new Date();
         let date = today.getDate() + '/' + (today.getMonth()+1) + '/' + today.getFullYear();
         let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-        return '[' + date + ' ' + time + ']';
+        return '%c' + ' [' + date + ' ' + time + '] ';
     }
 
-    showError(err) {
-        let errorName = '%c' + ' ' + this.getCurrentTime() + ' ' + Object.getPrototypeOf(err.constructor).name + ' ';
-        console.log(errorName, this.errorColor, err.name + '\t' + err.message);
+    log(message) {
+        console.log(this.getCurrentTime() + 'LOG ', this.logColor, message)
     }
 
-    showWarning(message) {
-        let errorName = '%c' + ' ' + this.getCurrentTime() + ' ' + Object.getPrototypeOf(err.constructor).name + ' ';
-        console.log(errorName, logColor, err.name + '\t' + err.message);
+    warn(message) {
+        console.log(this.getCurrentTime() + 'WARN ', this.warningColor, message)
     }
 
-    logError(err) {
-        if (this.debugMode) {
-            this.showError(this.errorColor, err);
-        }
-        else {
-            this.showError(this.errorColor, err);
+    err(err) {
+        console.log(this.getCurrentTime() + 'ERR ', this.errorColor, err.name + '\t' + err.message);
+        if (!this.debugMode) {
             throw err;
         }
-    }
-
-    logWarning(warning) {
-        this.showWarning(this.warningColor, warning);
     }
 }
 
