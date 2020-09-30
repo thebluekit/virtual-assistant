@@ -1,5 +1,5 @@
 import {logger} from './logger.js'
-import {readJSON} from './../controllers/jsonLoader.js'
+import {readJSON} from './jsonLoader.js'
 
 export class Skill {
     constructor(skillPath) {
