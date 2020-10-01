@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/thebluekit/virtual-assistant/issues"
   },
-  "homepage": "https://github.com/thebluekit/virtual-assistant#readme"
+  "homepage": "https://github.com/thebluekit/virtual-assistant#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "neo4j-driver": "^4.1.2"
+  }
 }
