@@ -26,7 +26,7 @@ class Logger {
     }
 
     err(err) {
-        console.log(this.getCurrentTime() + 'ERR ', this.errorColor, err.name + '\t' + err.message);
+        console.log(this.getCurrentTime() + 'ERR ', this.errorColor, err.name + ': ' + err.message);
         if (!this.debugMode) {
             throw err;
         }
